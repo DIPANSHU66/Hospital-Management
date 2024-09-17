@@ -1,11 +1,17 @@
 const express = require("express");
-const app = express();
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const fileUpload = require("express-fileupload");
+
 const { errorMiddleware } = require("../Backend/middleware/errorMiddleware");
+const { dbconnection } = require("../Backend/database/dbConnection");
+const messagerouter = require("../Backend/router/MessageRouter");
+const userRouter = require("../Backend/router/UserRouter");
+const appointmentrouter = require("../Backend/router/AppointmentRouter");
+
 require("dotenv").config({});
 const cloudinary = require("cloudinary");
+const app = express();
 
 cloudinary.v2.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -17,7 +23,7 @@ app.use(
   cors({
     origin: [process.env.FRONTEND_URL, process.env.DASHBOARD_URL],
     methods: ["GET", "POST", "PUT", "DELETE"],
-    Credentials: true,
+    credentials: true,
   })
 );
 app.use(cookieParser());
@@ -29,13 +35,11 @@ app.use(
     tempfileDir: "/tmp/",
   })
 );
-const messagerouter = require("../Backend/router/MessageRouter");
-const userRouter = require("../Backend/router/UserRouter");
-const appointmentrouter = require("../Backend/router/AppointmentRouter");
+
 app.use("/api/v1/message", messagerouter);
 app.use("/api/v1/appointment", appointmentrouter);
 app.use("/api/v1/user", userRouter);
-const { dbconnection } = require("../Backend/database/dbConnection");
+
 dbconnection();
 app.use(errorMiddleware);
 app.listen(PORT, () => {

@@ -6,22 +6,18 @@ const Hero = ({ title, imageUrl }) => {
       <div className="banner">
         <h1>{title}</h1>
         <p>
-          Dipanshu Medical Institute stands out as a state-of-the-art facility,
-          designed to meet the highest standards of modern healthcare. Our
-          institute is equipped with the latest advancements in medical
-          technology, ensuring that we provide the most effective and innovative
-          treatments available. Our team comprises highly skilled professionals,
-          including experienced doctors, specialized nurses, and dedicated
-          support staff, all of whom are committed to excellence in patient
-          care. Each member of our team is chosen not only for their expertise
-          but also for their compassionate approach, ensuring that every patient
-          feels understood and supported throughout their healthcare journey.
+          Dipanshu Medical Institute is a leading-edge healthcare facility
+          equipped with the latest technology. Our highly skilled team of
+          doctors, specialized nurses, and dedicated support staff delivers
+          innovative treatments with a focus on excellence and compassion. We
+          ensure each patient receives top-quality care and personalized support
+          throughout their healthcare journey.
         </p>
       </div>
       <div className="banner">
         <img src={imageUrl} alt="" className="animated-image" />
         <span>
-          <img src="/vector.png" alt="" />
+          <img src="https://pa.azureedge.net/media/join-hero/blob-latest.svg" alt="" />
         </span>
       </div>
     </div>

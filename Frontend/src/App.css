@@ -7,7 +7,7 @@
   font-family: "Montserrat", sans-serif;
 }
 body {
-  background: #e5e5e5;
+  background:white;
 }
 .btn {
   padding: 7px 20px;
@@ -450,8 +450,6 @@ nav .logo {
 }
 nav .navLinks {
   flex: 2;
-}
-nav .navLinks {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -460,14 +458,9 @@ nav .navLinks .links {
   display: flex;
   gap: 25px;
 }
-nav .navLinks .links a {
-  text-decoration: none;
-  color: #222;
-  font-size: 20px;
-  font-weight: 600;
-  letter-spacing: 1.4px;
-}
+
 nav .navLinks .links a:hover {
+  display: flex;
   color: #000;
   transition: 0.3s;
   cursor: pointer;
@@ -586,4 +579,153 @@ input[type="time"]:before {
 }
 footer .logo-img{
   width: 100%;
+}
+/* Ensures the navigation bar is always on top */
+
+/* Basic reset and layout for the navigation bar */
+/* Basic reset and layout for the navigation bar */
+/* Main container for the navbar */
+nav.c {
+  position: fixed; /* Fixes the navbar at the top of the viewport */
+  top: 0;
+  left: 0;
+  width: 100%; /* Full width */
+  background-color: #fff; /* White background for contrast */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  z-index: 1000; /* Ensures it stays above other content */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px; /* Padding for spacing */
+  box-sizing: border-box; /* Include padding in width calculation */
+  overflow: hidden; /* Ensure no overflow of content */
+}
+
+/* Style for the logo container */
+nav .logo {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+/* Styling for the nav links and button container */
+nav .navlink {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between links and buttons */
+  flex-shrink: 0; /* Prevent shrinking */
+}
+
+/* Style for the links inside the nav */
+nav .link {
+  display: flex;
+  gap: 20px; /* Space between links */
+}
+
+nav .link a {
+  text-decoration: none;
+  color: #222;
+  font-size: 1rem; /* Scalable font size */
+  font-weight: 600;
+  letter-spacing: 0.1em; /* Letter spacing */
+  transition: color 0.3s; /* Smooth color transition */
+}
+
+nav .link a:hover {
+  color: #007bff; /* Change color on hover */
+}
+
+/* Style for buttons */
+nav .btn {
+  padding: 8px 16px; /* Padding for buttons */
+  border: none;
+  border-radius: 4px; /* Rounded corners */
+  font-size: 1rem; /* Scalable font size */
+  font-weight: 600;
+  cursor: pointer; /* Pointer cursor for clickability */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
+}
+
+/* Style for login button */
+nav .loginBt {
+  background-color: #007bff; /* Primary button color */
+  color: #fff; /* White text */
+}
+
+nav .loginBt:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Style for logout button */
+nav .logoutBt {
+  background-color: #dc3545; /* Secondary button color */
+  color: #fff; /* White text */
+}
+
+nav .logoutBt:hover {
+  background-color: #c82333; /* Darker red on hover */
+}
+
+/* Style for the hamburger menu */
+nav .hamburger {
+  display: none; /* Hidden by default */
+  font-size: 1.8rem; /* Adjust size as needed */
+  cursor: pointer; /* Pointer cursor */
+  color: #222; /* Color to match the theme */
+}
+
+/* Style for mobile menu */
+nav .mobile-menu {
+  display: none; /* Hidden by default */
+  flex-direction: column; /* Stack items vertically */
+  width: 100%; /* Full width */
+  position: absolute;
+  top: 60px; /* Position below the navbar */
+  left: 0;
+  background-color: #fff; /* Same background as the navbar */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Match navbar shadow */
+  padding: 20px; /* Padding for mobile menu */
+  box-sizing: border-box; /* Include padding in width calculation */
+}
+
+/* Show the mobile menu when `show` class is active */
+nav .mobile-menu.show {
+  display: flex; /* Show the menu */
+}
+
+nav .mobile-menu a {
+  text-decoration: none;
+  color: #222; /* Text color */
+  font-size: 1.2rem; /* Slightly larger font size for mobile */
+  font-weight: 600;
+  margin-bottom: 15px; /* Space between links */
+  transition: color 0.3s; /* Smooth color transition */
+}
+
+nav .mobile-menu a:hover {
+  color: #007bff; /* Change color on hover */
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+  nav.c {
+    padding: 0 10px; /* Reduced padding */
+  }
+
+  nav .link {
+    gap: 15px; /* Adjust gap for smaller screens */
+  }
+
+  nav .navlink {
+    display: none; /* Hide links by default on mobile */
+    gap: 5px; /* Reduced gap between items */
+  }
+
+  nav .logo {
+    flex: 0 1 auto; /* Allow logo to shrink if necessary */
+  }
+
+  nav .hamburger {
+    display: block; /* Show hamburger menu on mobile */
+  }
 }

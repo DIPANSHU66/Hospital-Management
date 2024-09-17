@@ -120,7 +120,7 @@ const getuserDetails = catchAsyncError(async (req, res, next) => {
   res.status(200).json({ success: true, user });
 });
 
-const logout = catchAsyncError(async (req, res, next) => {
+const logoutadmin = catchAsyncError(async (req, res, next) => {
   res
     .status(200)
     .cookie("adminToken", "", {
@@ -129,13 +129,22 @@ const logout = catchAsyncError(async (req, res, next) => {
     })
     .json({ success: true, message: "Logout successfully" });
 });
+const logoutpatient = catchAsyncError(async (req, res, next) => {
+  res
+    .status(200)
+    .cookie("patientToken", "", {
+      httpOnly: true,
+      expires: new Date(Date.now()),
+    })
+    .json({ success: true, message: "Logout successfully" });
+});
 
 const addnewdoctor = catchAsyncError(async (req, res, next) => {
-  if (!req.files || Object.keys(req.files).length ===0) {
-    return next(new ErrorHandler("Doctor Avatar Required",400));
+  if (!req.files || Object.keys(req.files).length === 0) {
+    return next(new ErrorHandler("Doctor Avatar Required", 400));
   }
   const { docAvatar } = req.files;
-  const allowedFormats = ["image/png", "image/jpeg", "image/webp","image/jpg"];
+  const allowedFormats = ["image/png", "image/jpeg", "image/webp", "image/jpg"];
   if (!allowedFormats.includes(docAvatar.mimetype))
     return next(new ErrorHandler("File  Format Not  Supported", 400));
   const {
@@ -147,7 +156,7 @@ const addnewdoctor = catchAsyncError(async (req, res, next) => {
     gender,
     dob,
     nic,
-    doctorDepartement
+    doctorDepartement,
   } = req.body;
   if (
     !firstname ||
@@ -206,6 +215,7 @@ module.exports = {
   addnewaddmin,
   getAllDoctors,
   getuserDetails,
-  logout,
+  logoutadmin,
+  logoutpatient,
   addnewdoctor,
 };

@@ -23,9 +23,9 @@ const isadminAuthenticted = catchAsyncError(async (req, res, next) => {
 const ispatientAuthenticted = catchAsyncError(async (req, res, next) => {
   const token = req.cookies.patientToken;
   if (!token) {
-    return next(new ErrorHandler("Admin Not Authenticated", 400));
+    return next(new ErrorHandler("Patient Not Authenticated", 400));
   }
-  const decoded = jwt.verify(token,process.env.JWT_SECRET_KEY);
+  const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
   req.user = await User.findById(decoded.id);
   if (req.user.role != "Patient") {
     return next(
