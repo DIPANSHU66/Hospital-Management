@@ -109,6 +109,7 @@ const addnewaddmin = catchAsyncError(async (req, res, next) => {
   res.status(200).json({
     Success: true,
     message: "A  new admin Registered",
+    admin,
   });
 });
 const getAllDoctors = catchAsyncError(async (req, res, next) => {
@@ -141,12 +142,13 @@ const logoutpatient = catchAsyncError(async (req, res, next) => {
 
 const addnewdoctor = catchAsyncError(async (req, res, next) => {
   if (!req.files || Object.keys(req.files).length === 0) {
-    return next(new ErrorHandler("Doctor Avatar Required", 400));
+    return next(new ErrorHandler("Doctor  Avatar Required", 400));
   }
   const { docAvatar } = req.files;
   const allowedFormats = ["image/png", "image/jpeg", "image/webp", "image/jpg"];
   if (!allowedFormats.includes(docAvatar.mimetype))
     return next(new ErrorHandler("File  Format Not  Supported", 400));
+  console.log(req.body);
   const {
     firstname,
     lastname,
@@ -158,6 +160,7 @@ const addnewdoctor = catchAsyncError(async (req, res, next) => {
     nic,
     doctorDepartement,
   } = req.body;
+  
   if (
     !firstname ||
     !lastname ||

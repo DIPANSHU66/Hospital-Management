@@ -31,8 +31,14 @@ const Navbar = () => {
 
   return (
     <nav className="c">
-     
-      <div className="logo"> </div>
+      <div className="logo">
+        <img
+        
+          src="https://th.bing.com/th/id/OIP.rvPi9g5eBUJkgoS1rC3x0AHaHa?w=171&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7"
+          alt=""
+          className="logo-img"
+        />
+      </div>
       <div className={show ? "nav so" : "navlink"}>
         <div className="link">
           <Link to="/" onClick={() => setshow(!show)}>

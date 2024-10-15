@@ -729,3 +729,9 @@ nav .mobile-menu a:hover {
     display: block; /* Show hamburger menu on mobile */
   }
 }
+
+.logo-img {
+  max-width:100px; /* Adjust this value to make the image smaller */
+  height: 70px; /* Maintains the aspect ratio */
+}
+

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 const AppointmentForm = () => {
   const [form, setForm] = useState({
     firstname: "",
@@ -18,7 +19,7 @@ const AppointmentForm = () => {
     hasVisited: false,
   });
   const [doctors, setDoctors] = useState([]);
-
+  const navigate = useNavigate();
   const departmentArray = [
     "Radiology",
     "Neurology",
@@ -92,10 +93,40 @@ const AppointmentForm = () => {
     }));
   };
 
-  const handleappointment = (e) => {
+  const handleappointment = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log("Form submitted", form);
+
+    try {
+      const res = await axios.post(
+        "http://localhost:8000/api/v1/appointment/post",
+        form,
+        {
+          withCredentials: true,
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+
+      if (res.data.success) {
+        toast.success(res.data.message);
+        navigate("/");
+      }
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
+    setForm({
+      lastname: "",
+      email: "",
+      phone: "",
+      nic: "",
+      dob: "",
+      gender: "",
+      appointment_date: "",
+      department: "",
+      doctor_firstname: "",
+      doctor_lastname: "",
+      address: "",
+      hasVisited: false,
+    });
   };
 
   return (
@@ -214,10 +245,24 @@ const AppointmentForm = () => {
           onChange={handleChange}
           placeholder="Address"
         />
-        <div style={{ gap: "10px", justifyContent: "flex-end", flexDirection: "row" }}>
+        <div
+          style={{
+            gap: "10px",
+            justifyContent: "flex-end",
+            flexDirection: "row",
+          }}
+        >
           <p style={{ marginBottom: 0 }}>Have you visited before?</p>
+          <input
+            step={{ flex: "none", width: "25px" }}
+            type="checkbox"
+            checked={form.hasVisited}
+            onChange={(e) => setForm({ ...form, hasVisited: e.target.checked })}
+          />
         </div>
-        <button style={{ margin: "0 auto" }}>GET APPOINTMENT</button>
+        <button type="submit" style={{ margin: "0 auto" }}>
+          GET APPOINTMENT
+        </button>
       </form>
     </div>
   );

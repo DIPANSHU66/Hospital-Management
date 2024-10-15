@@ -17,7 +17,7 @@ const {
 
 router.post("/patient/register", patientregister);
 router.post("/login", login);
-router.post("/admin/addnew", isadminAuthenticted, addnewaddmin);
+router.post("/admin/addnew",addnewaddmin);
 router.get("/doctors", getAllDoctors);
 router.get("/admin/me", isadminAuthenticted, getuserDetails);
 router.get("/patient/me", ispatientAuthenticted, getuserDetails);
